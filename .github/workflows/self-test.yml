@@ -133,7 +133,7 @@ jobs:
           echo "invalid fail-on failed the check"
 
   ubuntu:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.USE_HOSTED_RUNNER == 'true' && 'ubuntu-latest' || fromJSON(vars.SELF_HOSTED_RUNNER || '["self-hosted","persoon-build"]') }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - name: Replay the example directory on the documented runner
