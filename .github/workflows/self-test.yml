@@ -8,7 +8,7 @@ permissions:
   pull-requests: write
 jobs:
   lint:
-    runs-on: self-hosted
+    runs-on: [self-hosted, persoon-build1]
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - name: actionlint
@@ -27,7 +27,7 @@ jobs:
           bash scripts/install_gitleaks.sh
           .tools/gitleaks detect --source . --redact --exit-code 1
   tests:
-    runs-on: self-hosted
+    runs-on: [self-hosted, persoon-build1]
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - name: Install the published package used by the action
@@ -42,7 +42,7 @@ jobs:
 
   replay:
     needs: tests
-    runs-on: self-hosted
+    runs-on: [self-hosted, persoon-build1]
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - name: Replay one trace file
@@ -88,7 +88,7 @@ jobs:
 
   threshold:
     needs: tests
-    runs-on: self-hosted
+    runs-on: [self-hosted, persoon-build1]
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - name: Rate above 5% fails the check
@@ -156,7 +156,7 @@ jobs:
   fork-fallback:
     if: github.event_name == 'pull_request'
     needs: replay
-    runs-on: self-hosted
+    runs-on: [self-hosted, persoon-build1]
     permissions:
       contents: read
       pull-requests: read
