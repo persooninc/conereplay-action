@@ -1,2 +1,15 @@
 .tools/
 .venv/
+
+# workspace hygiene (sync-workspace)
+.env
+.env.local
+.env.*.local
+node_modules/
+.DS_Store
+.next/
+dist/
+build/
+__pycache__/
+*.pyc
+.claude/worktrees/
