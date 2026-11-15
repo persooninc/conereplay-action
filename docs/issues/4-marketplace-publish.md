@@ -13,21 +13,21 @@ to publish and the exact one-line code change to make afterward.
 - [ ] The action is public and consumable as `gitdhillonai/conereplay-action@v1`
       (tag `v1` currently points at `41cdb55`).
 - [ ] `action.yml` has `name`, `description`, and `branding` (icon + color) set —
-      Marketplace requires all three. Current values:
-  - `name: ConeReplay` (must be unique across Marketplace; if taken, pick a
-    unique display name such as `ConeReplay Trace Replay`).
-  - `branding.icon` and `branding.color` present.
-- [ ] CI is green on `main` (run 37523283508 passed: tests, ubuntu, threshold,
-      replay, plus the lint job running actionlint + shellcheck + gitleaks).
-- [ ] A release/tag exists to publish from (`v1`).
+      Marketplace requires all three. Verified current values on `main`:
+  - `name: ConeReplay Regression Report` (must be unique across Marketplace; it
+    is a specific name and unlikely to collide — if GitHub reports it taken, pick
+    another unique display name such as `ConeReplay Trace Replay`).
+  - `description: Replay recorded agent traces against a proposed change and post
+    the divergence report as a PR comment.`
+  - `branding.icon: git-branch`, `branding.color: purple` (both present).
+- [ ] CI is green on `main` (lint job runs actionlint + shellcheck + gitleaks;
+      tests, ubuntu, threshold, replay, and fork-fallback jobs all pass).
+- [ ] A release/tag exists to publish from — annotated tag `v1` dereferences to
+      commit `41cdb55`.
 
-If `action.yml` is missing `branding`, add it before publishing:
-
-```yaml
-branding:
-  icon: repeat
-  color: blue
-```
+All three required `action.yml` fields are already present on `main`, so no
+pre-publish edit is needed. (For reference, if `branding` were ever missing it
+would be added as e.g. `branding:\n  icon: git-branch\n  color: purple`.)
 
 ## Owner publishing steps (GitHub web UI — owner account only)
 
